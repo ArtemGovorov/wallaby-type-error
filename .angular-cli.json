@@ -1,0 +1,74 @@
+{
+  "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
+  "project": {
+    "name": "org",
+    "npmScope": "org",
+    "latestMigration": "20180116-update-command-line-scripts-to-use-nx-command"
+  },
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "./tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/app/src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/app/e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {
+      "changeDetection": "OnPush"
+    },
+    "serve": {
+      "port": 3000,
+      "host": "0.0.0.0"
+    },
+    "schematics": {
+      "collection": "@nrwl/schematics",
+      "newProject": ["app", "lib"],
+      "postGenerate": "npm run format"
+    }
+  },
+  "packageManager": "npm",
+  "warnings": {
+    "typescriptMismatch": false
+  },
+  "apps": [
+    {
+      "name": "app",
+      "root": "apps/app/src",
+      "outDir": "dist/apps/app",
+      "assets": ["assets"],
+      "baseHref": "/",
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": ["styles.scss"],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ]
+}
