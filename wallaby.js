@@ -5,7 +5,7 @@ const webpack = require("webpack");
 const wallabyWebpack = require("wallaby-webpack");
 
 const compilerOptions = Object.assign(
-  {},
+  { useStandardDefaults: true },
   require("./tsconfig.json").compilerOptions,
   require("./tsconfig.spec.json").compilerOptions
 );
